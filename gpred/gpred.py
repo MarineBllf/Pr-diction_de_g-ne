@@ -260,17 +260,14 @@ def main() -> None: # pragma: no cover
 
     # Let us do magic in 5' to 3'
     fasta_seq = read_fasta(args.genome_file)
-
     predicts_genes = predict_genes(fasta_seq, start_regex, stop_regex,shine_regex, 
                   args.min_gene_len, args.max_shine_dalgarno_distance, args.min_gap)
     
-    
-
+    # 3' 5'
     reverse_seq = reverse_complement(fasta_seq)
     predict_genes_reverse = predict_genes(reverse_seq, start_regex, stop_regex,shine_regex, 
                   args.min_gene_len, args.max_shine_dalgarno_distance, args.min_gap)
-    print(predict_genes_reverse)
-
+    
 
     n_predict_gene_rv = []
     for pred in predict_genes_reverse:
@@ -279,28 +276,10 @@ def main() -> None: # pragma: no cover
     predict = predicts_genes + n_predict_gene_rv
     sort_predict = sorted(predict)
 
+    # Call to output functions
     write_genes_pos(args.predicted_genes_file, sort_predict)
-    
-    # reverse 
-    #write_genes_pos(args.predicted_genes_file, predict_genes_reverse)
-
     write_genes(args.fasta_file, fasta_seq, predicts_genes, reverse_seq, predict_genes_reverse)
     
-    #w_gene_file = write_genes_pos(args.predicted_genes_file,predict_genes)
-
-    # 3' 5'
-    #reverse_seq = reverse_complement(fasta_seq)
-
-    
-    # Don't forget to uncomment !!!
-    # Call these function in the order that you want
-    # We reverse and complement
-    #sequence_rc = reverse_complement(sequence)
-    # Call to output functions
-    #write_genes_pos(args.predicted_genes_file, probable_genes)
-    #write_genes(args.fasta_file, sequence, probable_genes, sequence_rc, probable_genes_comp)
-
-
 
 if __name__ == '__main__':
     main()
