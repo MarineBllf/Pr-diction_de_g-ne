@@ -68,7 +68,6 @@ def read_fasta(fasta_file: Path) -> str:
             if line_clear.startswith('>') == False:
                     seq = seq + line_clear
         return seq
-    pass
 
 
 def find_start(start_regex: Pattern, sequence: str, start: int, stop: int) -> Union[int, None]:
@@ -106,28 +105,6 @@ def find_stop(stop_regex: Pattern, sequence: str, start: int) -> Union[int, None
             break
     return position
     
-# def find_stop(stop_regex: Pattern, sequence: str, start: int) -> Union[int, None]:
-#     """Find next stop codon that should be in the same reading phase as the start.
-
-#     :param stop_regexp: A regex object that identifies a stop codon.
-#     :param sequence: (str) Sequence from the genome
-#     :param start: (int) Start position of the research
-#     :return: (int) If exist, position of the stop codon. Otherwise None. 
-#     """
-
-#     position = None
-
-#     matchs = stop_regex.finditer(sequence, start)
-#     if matchs != None : 
-
-#         for Match in list(matchs) : 
-#             if Match.span()[0] % 3 == (start % 3) : 
-#                 position = Match.span()[0]
-#                 break
-    
-#         return position
-    
-#     pass
 
 
 def has_shine_dalgarno(shine_regex: Pattern, sequence: str, start: int, max_shine_dalgarno_distance: int) -> bool:
