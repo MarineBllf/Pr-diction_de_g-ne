@@ -126,7 +126,6 @@ def has_shine_dalgarno(shine_regex: Pattern, sequence: str, start: int, max_shin
         return shine_flag
     else : 
         return shine_flag
-    pass
 
 
 def predict_genes(sequence: str, start_regex: Pattern, stop_regex: Pattern, shine_regex: Pattern, 
